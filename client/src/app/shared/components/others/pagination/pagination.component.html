@@ -1,0 +1,31 @@
+<div class="paginas">
+    @if(elementosPag()) {
+        <label class="elementos_pag">Elementos por pág</label>
+        <select (change)="cambiarSize($event)">
+            <option [value]="20">20</option>
+            <option [value]="50">50</option>
+            <option [value]="100">100</option>
+        </select>
+    }
+    <label class="paginas1">{{dataPagination().total}}</label>
+    <label class="paginas2">RES</label>
+    <label class="diagonal_pag">/</label>
+    <label class="paginas3">{{totalPages()}}</label>
+    <label class="paginas2">PÁG(S)</label>
+    <label class="selector">
+        <select [(ngModel)]="dataPagination().page" (change)="cambiarPagina(dataPagination().page)">>
+            @for (page of paginationRange(); track $index; let index = $index) {
+            <option [value]="index + 1">
+                Página {{index + 1}} / {{page}}
+            </option>
+            }
+        </select>
+    </label>
+    <div class="botonPagA" (click)="paginaAnterior()">
+        <img src="componentes/b_anterior.png" />
+    </div>
+    <label class="paginas5">{{dataPagination().page}}</label>
+    <div class="botonPagS" (click)="paginaSiguiente()">
+        <img src="componentes/b_siguiente.png" />
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="flex flex-col items-center justify-center h-screen border bg-gray-100">
+  <form class="flex flex-col shadow-sm p-4 rounded-md bg-white gap-5 w-72">
+    <h1 class="text-center font-semibold text-xl">Sign In</h1>
+
+    <div class="flex flex-col gap-2">
+      <!-- Usuario -->
+      <div class="flex flex-col">
+        <label for="usuario">User</label>
+        <input type="text" placeholder="Usuario" class="p-1 rounded-md border-2 border-blue-500">
+      </div>
+  
+      <!-- Contraseña -->
+      <div class="flex flex-col">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" class="p-1 rounded-md border-2 border-blue-500">
+      </div>
+    </div>
+    
+    <!-- Recuperar contraseña -->
+    <div class="flex justify-end">
+      <a class="text-blue-500 underline cursor-pointer text-sm">Recover password</a>
+    </div>
+    <!-- Botón de inicio de sesión -->
+    <button class="bg-blue-500 text-white p-2 rounded-md" (click)="signIn()">Sign In</button>
+  </form>
+</div>
