@@ -7,8 +7,8 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (authService.isLoggedIn()) {
-    // If user is already logged in, redirect to home
-    router.navigate(['/home']);
+    // If user is already logged in, redirect to dashboard home
+    router.navigate(['/dashboard/home']);
     return false;
   }
 

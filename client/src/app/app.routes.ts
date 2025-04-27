@@ -5,9 +5,12 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 import { HomeComponent } from './modules/pages/home/home.component';
 import { OtherComponent } from './modules/pages/other/other.component';
 import { loginGuard } from './core/guards/login.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-
+  // Root redirect
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  
   // Auth
   { 
     path: 'sign-in', 
@@ -18,8 +21,9 @@ export const routes: Routes = [
 
   // Dashboard
   {
-    path: '',
+    path: 'dashboard',
     component: LayoutComponent,
+    canActivate: [authGuard],
     children: [
       // Catalogos
       { path: 'home', component: HomeComponent },
@@ -28,4 +32,6 @@ export const routes: Routes = [
     ],
   },
 
+  // Catch all route - must be last
+  { path: '**', redirectTo: 'sign-in' },
 ];

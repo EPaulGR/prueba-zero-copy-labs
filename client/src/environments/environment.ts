@@ -10,7 +10,8 @@ export const environment = {
 
   // Producción El Cipres.com.mx
   // apiURL: 'http://20.110.157.217:8080/tickets-web-api',
-  apiURL: 'http://localhost:8080',
+  apiURL: 'http://localhost:3000/api',
+
 
 };
 

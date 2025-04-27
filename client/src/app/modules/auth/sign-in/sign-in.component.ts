@@ -14,15 +14,25 @@ export class SignInComponent {
   #router = inject(Router);
   #authService = inject(AuthService);
 
-  username: string = '';
-  password: string = '';
+  email: string = 'henderson.briggs@geeknet.net';
+  password: string = '23derd*334';
 
   signIn() {
-    if (this.#authService.login(this.username, this.password)) {
-      this.#router.navigate(['/home']);
-    } else {
-      // Handle login error
-      console.error('Login failed');
-    }
+    const params = {
+      email: this.email,
+      password: this.password
+    };
+    this.#authService.login(params).subscribe({
+      next: (response) => {
+        console.log(response);
+        localStorage.setItem('user', JSON.stringify(response));
+        const randomToken = crypto.randomUUID();
+        localStorage.setItem('token', randomToken);
+        this.#router.navigate(['/dashboard/home']);
+      },
+      error: (error) => {
+        console.error('Login failed');
+      }
+    });
   }
 }
