@@ -2,7 +2,7 @@ export interface User {
   _id: string;
   guid: string;
   isActive: boolean;
-  balance: string;
+  balance: number;
   picture: string;
   age: number;
   eyeColor: string;
@@ -24,7 +24,7 @@ export interface LoginDto {
 
 export interface UpdateBalanceDto {
   userId: string;
-  newBalance: string;
+  newBalance: number;
 }
 
 export interface UpdateUserDto {

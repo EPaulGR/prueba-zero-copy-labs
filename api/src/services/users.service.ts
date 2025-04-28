@@ -83,4 +83,14 @@ export class UsersService {
 
     return updatedUser;
   }
+
+  async getUserById(userId: string): Promise<User> {
+    const user = this.db.get('users').find({ _id: userId }).value();
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
 }

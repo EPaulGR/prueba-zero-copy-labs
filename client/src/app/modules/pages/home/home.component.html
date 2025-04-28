@@ -1,1 +1,102 @@
-home
+<div class="flex flex-col items-center p-6 max-w-md mx-auto">
+  <!-- Imagen de perfil -->
+  <div class="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center">
+    <img [src]="user().picture" alt="">
+  </div>
+
+  <!-- Botones -->
+  <div class="flex space-x-4 mt-6">
+    <button class="bg-blue-500 text-white font-medium py-1 px-6 rounded-md cursor-pointer hover:bg-blue-600" (click)="selectBalance()">BALANCE</button>
+    <button class="bg-blue-500 text-white font-medium py-1 px-6 rounded-md cursor-pointer hover:bg-blue-600" (click)="selectProfile()">PROFILE</button>
+  </div>
+
+  <!-- Lista de items -->
+   @if(viewBalance()) {
+     <div class="mt-8 space-y-4">
+      <span class="text-gray-500">Balance: </span>
+      <span class="text-gray-700 font-bold">{{user().balance | currency}} MXN</span>
+
+    </div>
+   } @else {
+    <div class="mt-8 space-y-4">
+      @if (userEdit()) {
+        
+        <div class="mt-8 space-y-4">
+          <form [formGroup]="userForm">
+            <div formGroupName="name" class="space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">First Name: </span>
+                <input type="text" formControlName="first" class="p-1 rounded-md border border-gray-300">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Last Name: </span>
+                <input type="text" formControlName="last" class="p-1 rounded-md border border-gray-300">
+              </div>
+            </div>
+            <div class="space-y-2 mt-2">
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Age: </span>
+                <input type="number" formControlName="age" class="p-1 rounded-md border border-gray-300">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Email: </span>
+                <input type="email" formControlName="email" class="p-1 rounded-md border border-gray-300">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Phone: </span>
+                <input type="tel" formControlName="phone" class="p-1 rounded-md border border-gray-300">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Address: </span>
+                <input type="text" formControlName="address" class="p-1 rounded-md border border-gray-300">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <span class="text-gray-500">Company: </span>
+                <input type="text" formControlName="company" class="p-1 rounded-md border border-gray-300">
+              </div>
+            </div>
+          </form>
+          
+          <div class="grid grid-cols-2 gap-2">
+            <button class="bg-blue-500 text-white font-medium py-1 px-6 rounded-md cursor-pointer hover:bg-blue-600" (click)="updateUser()">UPDATE</button>
+            <button class="bg-red-500 text-white font-medium py-1 px-6 rounded-md cursor-pointer hover:bg-red-600" (click)="editUser()">Cancel edit</button>
+          </div>
+    
+        </div>
+      } @else {
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">First Name:</span>
+            <span class="font-medium">{{user().name.first}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Last Name:</span>
+            <span class="font-medium">{{user().name.last}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Age:</span>
+            <span class="font-medium">{{user().age}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Email:</span>
+            <span class="font-medium">{{user().email}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Phone:</span>
+            <span class="font-medium">{{user().phone}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Address:</span>
+            <span class="font-medium">{{user().address}}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <span class="text-gray-500">Company:</span>
+            <span class="font-medium">{{user().company}}</span>
+          </div>
+        </div>
+        <button class="bg-blue-500 text-white font-medium py-1 px-6 rounded-md cursor-pointer hover:bg-blue-600" (click)="editUser()">Edit</button>
+      }
+    </div>
+
+   }   
+</div>
